@@ -11,600 +11,178 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#070A12;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.10);
-      --text:#EAF0FF;
-      --muted: rgba(234,240,255,.72);
-      --line: rgba(255,255,255,.10);
-      --a:#7C3AED; /* violet */
-      --b:#06B6D4; /* cyan */
-      --c:#22C55E; /* green */
-      --d:#F97316; /* orange */
-      --e:#F43F5E; /* rose */
-      --shadow: 0 18px 55px rgba(0,0,0,.45);
-    }
+  <style><style>
+  :root{
+    --bg:#050712;
+    --card: rgba(255,255,255,.08);
+    --border: rgba(255,255,255,.14);
+    --text: #eaf0ff;
+    --muted: rgba(234,240,255,.72);
+    --accent1:#00E5FF;
+    --accent2:#7C3AED;
+    --accent3:#22C55E;
+  }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(1200px 800px at 10% 10%, rgba(124,58,237,.22), transparent 55%),
-        radial-gradient(900px 600px at 85% 20%, rgba(6,182,212,.18), transparent 55%),
-        radial-gradient(900px 700px at 65% 95%, rgba(244,63,94,.14), transparent 60%),
-        linear-gradient(180deg, #050711, #070A12 35%, #050711);
-      color:var(--text);
-      overflow-x:hidden;
-    }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--text);
+    background: var(--bg);
+    min-height:100vh;
 
-    a{color:inherit}
-    .wrap{max-width:1160px;margin:0 auto;padding:0 18px}
-    .topbar{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(7,10,18,.85), rgba(7,10,18,.35));
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 0; gap:14px;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;
-      text-decoration:none;
-    }
-    .logoDot{
-      width:34px;height:34px;border-radius:12px;
-      background: conic-gradient(from 180deg, var(--a), var(--b), var(--c), var(--d), var(--e), var(--a));
-      box-shadow: 0 10px 30px rgba(124,58,237,.25);
-    }
-    .brand strong{font-weight:800;letter-spacing:-.02em}
-    .brand span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+    /* Background image */
+    background-image:
+      radial-gradient(1200px 800px at 15% 20%, rgba(0,229,255,.20), transparent 55%),
+      radial-gradient(900px 700px at 80% 25%, rgba(124,58,237,.25), transparent 55%),
+      linear-gradient(180deg, rgba(5,7,18,.75), rgba(5,7,18,.92)),
+      url("bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* looks premium on desktop */
+  }
 
-    .links{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .chip{
-      padding:10px 12px;border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      text-decoration:none;
-      font-weight:600;
-      font-size:13px;
-      transition:.18s transform, .18s background;
-      white-space:nowrap;
-    }
-    .chip:hover{transform:translateY(-1px); background: rgba(255,255,255,.08)}
+  /* If background-attachment causes issues on phone */
+  @media (max-width: 768px){
+    body{ background-attachment: scroll; }
+  }
 
-    /* HERO */
-    .hero{
-      position:relative;
-      padding:34px 0 18px;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    @media (max-width: 900px){
-      .heroGrid{grid-template-columns: 1fr; }
-    }
+  .wrap{max-width:1100px;margin:auto;padding:28px 18px 60px}
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 16px;border:1px solid var(--border);
+    background:rgba(0,0,0,.25);backdrop-filter: blur(10px);
+    border-radius:16px;
+  }
+  .brand{font-weight:800;letter-spacing:.3px}
+  .pill{
+    display:inline-flex;gap:10px;align-items:center;
+    padding:10px 14px;border-radius:999px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.06);
+    color:var(--text);text-decoration:none;font-weight:700;
+  }
+  .hero{
+    margin-top:18px;padding:26px;border-radius:22px;
+    border:1px solid var(--border);
+    background: linear-gradient(135deg, rgba(0,229,255,.12), rgba(124,58,237,.10), rgba(0,0,0,.18));
+    backdrop-filter: blur(10px);
+    display:grid;grid-template-columns: 1.2fr .8fr; gap:18px;
+  }
+  @media (max-width: 900px){
+    .hero{grid-template-columns:1fr}
+  }
+  h1{margin:0;font-size:40px;line-height:1.05}
+  .sub{margin:10px 0 0;color:var(--muted);font-size:16px;line-height:1.6}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .chip{
+    padding:8px 10px;border-radius:999px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.06);
+    color:var(--muted);font-weight:700;font-size:13px
+  }
 
-    .heroCard{
-      position:relative;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-    }
-    .heroMedia{
-      min-height:360px;
-      background:
-        radial-gradient(900px 500px at 20% 30%, rgba(6,182,212,.35), transparent 55%),
-        radial-gradient(900px 500px at 80% 30%, rgba(124,58,237,.30), transparent 55%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      position:relative;
-    }
-    .heroMedia img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      filter: saturate(1.05) contrast(1.05);
-      opacity:.95;
-    }
-    .heroOverlay{
-      position:absolute; inset:0;
-      background:
-        linear-gradient(90deg, rgba(7,10,18,.85) 0%, rgba(7,10,18,.25) 55%, rgba(7,10,18,.05) 100%),
-        radial-gradient(900px 500px at 20% 30%, rgba(244,63,94,.18), transparent 60%);
-      display:flex; flex-direction:column; justify-content:flex-end;
-      padding:22px;
-      gap:14px;
-    }
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+  @media (max-width: 980px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width: 640px){ .grid{grid-template-columns:1fr} }
 
-    h1{
-      margin:0;
-      font-size:44px;
-      line-height:1.03;
-      letter-spacing:-.03em;
-    }
-    @media (max-width: 520px){
-      h1{font-size:36px;}
-    }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.55;
-      max-width:62ch;
-    }
-    .ctaRow{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      font-weight:800;
-      text-decoration:none;
-      transition:.18s transform, .18s background, .18s border-color;
-    }
-    .btn:hover{transform:translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.18)}
-    .btnPrimary{
-      border:none;
-      background: linear-gradient(135deg, var(--a), var(--b));
-      color:#0b1020;
-      box-shadow: 0 16px 35px rgba(6,182,212,.18);
-    }
-    .btnPrimary:hover{filter:brightness(1.03)}
-    .mini{
-      display:flex;gap:10px;flex-wrap:wrap;
-      color:var(--muted); font-size:13px;
-    }
-    .mini b{color:var(--text)}
+  .card{
+    padding:16px;border-radius:18px;
+    border:1px solid var(--border);
+    background: rgba(0,0,0,.28);
+    backdrop-filter: blur(10px);
+  }
+  .card h3{margin:0 0 8px}
+  .card p{margin:0;color:var(--muted);line-height:1.55}
 
-    /* SIDE CARD */
-    .sideCard{
-      display:flex; flex-direction:column;
-      padding:18px;
-      gap:14px;
-    }
-    .portrait{
-      display:flex;gap:14px;align-items:center;
-      padding:14px;border-radius:18px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-    }
-    .portrait img{
-      width:78px;height:78px;border-radius:18px;
-      object-fit:cover;
-      border:1px solid rgba(255,255,255,.16);
-    }
-    .portrait .t1{font-weight:900;letter-spacing:-.02em}
-    .portrait .t2{color:var(--muted);font-size:13px;margin-top:4px;line-height:1.35}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    margin-top:12px;padding:11px 14px;border-radius:12px;
+    color:#081018;text-decoration:none;font-weight:900;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  }
+  .btn.secondary{
+    background: rgba(255,255,255,.10);
+    color: var(--text);
+    border:1px solid var(--border);
+  }
 
-    .kpis{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:10px;
-    }
-    .kpi{
-      padding:12px;border-radius:16px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      text-align:left;
-    }
-    .kpi strong{display:block;font-size:18px}
-    .kpi span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+  footer{margin-top:26px;color:rgba(234,240,255,.65);text-align:center;font-size:13px}
+</style>
 
-    .pillRow{display:flex;flex-wrap:wrap;gap:8px}
-    .pill{
-      font-size:12px;
-      padding:8px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      color:var(--muted);
-    }
-
-    /* SECTIONS */
-    section{padding:18px 0}
-    .sectionHead{
-      display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;
-      margin:8px 0 10px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-size:22px;
-      letter-spacing:-.02em;
-    }
-    .sectionHead p{
-      margin:0;color:var(--muted);font-size:13px;max-width:70ch;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-    }
-    .card{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius:18px;
-      padding:16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(500px 220px at 15% 10%, rgba(6,182,212,.18), transparent 55%),
-                  radial-gradient(500px 220px at 80% 40%, rgba(124,58,237,.16), transparent 60%);
-      pointer-events:none;
-    }
-    .card > *{position:relative}
-    .col4{grid-column: span 4;}
-    .col6{grid-column: span 6;}
-    .col8{grid-column: span 8;}
-    .col12{grid-column: span 12;}
-    @media (max-width: 900px){
-      .col4,.col6,.col8{grid-column: span 12;}
-      .kpis{grid-template-columns:repeat(3,1fr)}
-    }
-    @media (max-width: 520px){
-      .kpis{grid-template-columns:repeat(2,1fr)}
-    }
-
-    .tag{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:7px 10px;border-radius:999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-size:12px;
-      margin-bottom:10px;
-    }
-
-    .list{margin:10px 0 0; padding:0 0 0 18px; color:var(--muted); line-height:1.7}
-    .caseTitle{margin:6px 0 6px; font-size:18px; letter-spacing:-.01em}
-    .caseMeta{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
-    .caseActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .caseActions a{font-size:13px}
-
-    /* small gallery */
-    .thumbRow{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-      margin-top:12px;
-    }
-    .thumb{
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      min-height:110px;
-      position:relative;
-    }
-    .thumb img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      transform: scale(1.02);
-    }
-    .thumbLabel{
-      position:absolute; left:10px; bottom:10px;
-      padding:8px 10px;border-radius:999px;
-      background: rgba(7,10,18,.75);
-      border:1px solid rgba(255,255,255,.12);
-      font-size:12px;color:rgba(234,240,255,.88);
-      backdrop-filter: blur(10px);
-    }
-
-    footer{
-      padding:24px 0 40px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .footGrid{
-      display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between;
-    }
-    .small{font-size:12px;color:rgba(234,240,255,.55)}
   </style>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="wrap">
-      <div class="nav">
-        <a class="brand" href="#top">
-          <div class="logoDot" aria-hidden="true"></div>
-          <div>
-            <strong>Shaun Nkuna Digital Solutions</strong>
-            <span>Websites • SEO • Social Media Marketing</span>
-          </div>
-        </a>
-
-        <div class="links">
-          <a class="chip" href="#work">Work</a>
-          <a class="chip" href="#services">Services</a>
-          <a class="chip" href="#contact">Contact</a>
-          <a class="chip" href="https://wa.me/27765238594" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
-      </div>
-    </div>
+  <div class="wrap">
+  <div class="nav">
+    <div class="brand">Shaun Nkuna • Digital Solutions</div>
+    <a class="pill" href="https://wa.me/27765238594" target="_blank">WhatsApp</a>
   </div>
 
-  <main id="top" class="hero">
-    <div class="wrap">
-      <div class="heroGrid">
-        <!-- Big hero -->
-        <div class="heroCard">
-          <div class="heroMedia">
-            <!-- Put your banner/poster image in the repo as hero.jpg -->
-            <img src="hero.jpg" alt="Shaun Nkuna Digital Solutions" onerror="this.style.display='none';">
-            <div class="heroOverlay">
-              <div>
-                <h1>Modern websites that convert.</h1>
-                <p class="sub">
-                  I design clean, mobile-first websites for local businesses and organisations — with practical
-                  customer contact (WhatsApp), basic SEO setup, and clear call-to-actions.
-                </p>
-              </div>
+  <section class="hero">
+    <div>
+      <h1>Websites, SEO & Social Media that convert.</h1>
+      <p class="sub">
+        I build modern mobile-first websites and help brands grow using SEO, content strategy,
+        and paid/organic social campaigns.
+      </p>
 
-              <div class="ctaRow">
-                <a class="btn btnPrimary" href="#work">View Live Work</a>
-                <a class="btn" href="https://wa.me/27765238594" target="_blank" rel="noopener">Contact on WhatsApp</a>
-                <a class="btn" href="mailto:shaunrepublicclothingsa@gmail.com">Email</a>
-              </div>
-
-              <div class="mini">
-                <div>📍 <b>Middelburg</b></div>
-                <div>📞 <b>Call:</b> 068 208 5749</div>
-                <div>💬 <b>WhatsApp:</b> 076 523 8594</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Side -->
-        <div class="heroCard sideCard">
-          <div class="portrait">
-            <!-- Put your portrait in the repo as portrait.jpg -->
-            <img src="portrait.jpg" alt="Shaun Nkuna" onerror="this.style.display='none';">
-            <div>
-              <div class="t1">Shaun Nkuna</div>
-              <div class="t2">Website Development • SEO • Social Media Marketing<br>Fast delivery, clear communication, mobile-first.</div>
-            </div>
-          </div>
-
-          <div class="kpis">
-            <div class="kpi">
-              <strong>Mobile-first</strong>
-              <span>Fast, responsive layouts</span>
-            </div>
-            <div class="kpi">
-              <strong>WhatsApp CTA</strong>
-              <span>Conversion-focused buttons</span>
-            </div>
-            <div class="kpi">
-              <strong>Basic SEO</strong>
-              <span>Meta + structure setup</span>
-            </div>
-          </div>
-
-          <div class="pillRow">
-            <div class="pill">On-page SEO</div>
-            <div class="pill">Local SEO</div>
-            <div class="pill">Content planning</div>
-            <div class="pill">Social media</div>
-            <div class="pill">Landing pages</div>
-            <div class="pill">Updates & maintenance</div>
-          </div>
-
-          <div class="card" style="padding:14px;">
-            <div class="tag">⚡ Quick promise</div>
-            <div style="font-weight:800;letter-spacing:-.01em">A clean website + strong CTA beats “fancy” design that doesn’t sell.</div>
-            <p style="margin:8px 0 0;color:var(--muted);line-height:1.6;font-size:13px">
-              I focus on clarity: services, pricing/booking path, trust signals and fast contact.
-            </p>
-          </div>
-        </div>
+      <div class="chips">
+        <div class="chip">Website Design</div>
+        <div class="chip">SEO (Local + On-Page)</div>
+        <div class="chip">Social Media Marketing</div>
+        <div class="chip">WhatsApp CTAs</div>
       </div>
 
-      <!-- WORK -->
-      <section id="work">
-        <div class="sectionHead">
-          <div>
-            <h2>Live websites</h2>
-            <p>These are live links you can open right now. Each one is built for a different industry and purpose.</p>
-          </div>
-        </div>
-
-        <div class="grid">
-          <!-- ShaunRepublic -->
-          <div class="card col6">
-            <div class="tag">🧵 Brand / Clothing</div>
-            <h3 class="caseTitle">ShaunRepublic Clothing SA</h3>
-            <p class="caseMeta">Product-focused layout, brand identity, contact + enquiry flow.</p>
-            <ul class="list">
-              <li>Brand colors: army green, maroon, black, white</li>
-              <li>Products: Siya tee, golf tees, beanies, bucket hats, sneakers</li>
-              <li>WhatsApp + email contact paths</li>
-            </ul>
-            <div class="caseActions">
-              <a class="btn btnPrimary" href="https://nkunass328-cloud.github.io/Shaunrepublic-Clothing/" target="_blank" rel="noopener">Open Website</a>
-              <a class="btn" href="#contact">Request Similar</a>
-            </div>
-          </div>
-
-          <!-- Grace Chicken Dust -->
-          <div class="card col6">
-            <div class="tag">🍗 Food / Local business</div>
-            <h3 class="caseTitle">The Grace Chicken Dust</h3>
-            <p class="caseMeta">Menu + ordering CTA, simple “pick up & deliver” customer flow.</p>
-            <ul class="list">
-              <li>Location: Middelburg Extension 24</li>
-              <li>Hours: Mon–Sat 09:00–21:00</li>
-              <li>Pickup & delivery info + direct contact</li>
-            </ul>
-            <div class="caseActions">
-              <a class="btn btnPrimary" href="https://nkunass328-cloud.github.io/The-grace-chicken-dust/" target="_blank" rel="noopener">Open Website</a>
-              <a class="btn" href="#contact">Request Similar</a>
-            </div>
-          </div>
-
-          <!-- Church -->
-          <div class="card col6">
-            <div class="tag">⛪ Organisation / Church</div>
-            <h3 class="caseTitle">Faith of Christians in Ministries — Middelburg</h3>
-            <p class="caseMeta">Service times, ministries, leadership, and easy WhatsApp contact.</p>
-            <ul class="list">
-              <li>Sundays: 09:30–13:00</li>
-              <li>Tuesdays: 18:00–19:30</li>
-              <li>Ministries: Youth, Women, Men, Children</li>
-            </ul>
-            <div class="caseActions">
-              <a class="btn btnPrimary" href="https://nkunass328-cloud.github.io/Faith-Of-Christians-In-Ministries-/" target="_blank" rel="noopener">Open Website</a>
-              <a class="btn" href="#contact">Request Similar</a>
-            </div>
-          </div>
-
-          <!-- Motivep -->
-          <div class="card col6">
-            <div class="tag">🏗️ Company profile</div>
-            <h3 class="caseTitle">Motivep (Pty) Ltd</h3>
-            <p class="caseMeta">Corporate info layout, references section, and contact structure.</p>
-            <ul class="list">
-              <li>Business profile styled into a clear website format</li>
-              <li>Client references listed without clutter</li>
-              <li>Simple structure for credibility</li>
-            </ul>
-            <div class="caseActions">
-              <a class="btn btnPrimary" href="https://nkunass328-cloud.github.io/Motive-p--Pty--Ltd/" target="_blank" rel="noopener">Open Website</a>
-              <a class="btn" href="#contact">Request Similar</a>
-            </div>
-          </div>
-
-          <!-- Mini visuals (uses same two images you uploaded) -->
-          <div class="card col12">
-            <div class="sectionHead" style="margin:0 0 8px;">
-              <h2 style="font-size:18px;margin:0">Visual style</h2>
-              <p>Bright, clean, and modern — simple but premium. (These images are from your repo.)</p>
-            </div>
-            <div class="thumbRow">
-              <div class="thumb">
-                <img src="hero.jpg" alt="Brand poster" onerror="this.style.display='none';">
-                <div class="thumbLabel">Brand / Services</div>
-              </div>
-              <div class="thumb">
-                <img src="portrait.jpg" alt="Portrait" onerror="this.style.display='none';">
-                <div class="thumbLabel">Personal brand</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="services">
-        <div class="sectionHead">
-          <div>
-            <h2>What I deliver</h2>
-            <p>Simple packages that small businesses actually need — not complicated “agency stuff” with no results.</p>
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="card col4">
-            <div class="tag">🌐 Website Design</div>
-            <h3 class="caseTitle">Responsive Website</h3>
-            <p class="caseMeta">Mobile-first layout, clean sections, and strong CTA buttons.</p>
-            <ul class="list">
-              <li>1–5 pages</li>
-              <li>WhatsApp click-to-chat</li>
-              <li>Fast loading structure</li>
-            </ul>
-          </div>
-
-          <div class="card col4">
-            <div class="tag">🔎 SEO Setup</div>
-            <h3 class="caseTitle">Basic SEO</h3>
-            <p class="caseMeta">The essentials so Google can read your site properly.</p>
-            <ul class="list">
-              <li>Meta titles & descriptions</li>
-              <li>Page structure + headings</li>
-              <li>Local SEO basics</li>
-            </ul>
-          </div>
-
-          <div class="card col4">
-            <div class="tag">📣 Social Media</div>
-            <h3 class="caseTitle">Social Media Marketing</h3>
-            <p class="caseMeta">Content, community and paid ads when needed.</p>
-            <ul class="list">
-              <li>Content calendar</li>
-              <li>Captions + hashtags</li>
-              <li>Community responses</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact">
-        <div class="sectionHead">
-          <div>
-            <h2>Contact</h2>
-            <p>If you want a site like C-Pixels style (multi-service, product categories, policies), I can build a flagship version.</p>
-          </div>
-        </div>
-
-        <div class="grid">
-          <div class="card col8">
-            <div class="tag">✅ Quick message template</div>
-            <h3 class="caseTitle" style="margin-bottom:8px;">Copy & send</h3>
-            <p class="caseMeta" style="margin-bottom:12px;">
-              “Hi Shaun, we need a website for (business name). Our services are (…). We want WhatsApp contact and a clean modern design.”
-            </p>
-            <div class="ctaRow">
-              <a class="btn btnPrimary" href="https://wa.me/27765238594" target="_blank" rel="noopener">WhatsApp: 076 523 8594</a>
-              <a class="btn" href="tel:+27682085749">Call: 068 208 5749</a>
-              <a class="btn" href="mailto:shaunrepublicclothingsa@gmail.com">Email</a>
-            </div>
-          </div>
-
-          <div class="card col4">
-            <div class="tag">🧾 Note</div>
-            <p class="caseMeta" style="line-height:1.7">
-              Hosting: GitHub Pages (free).<br>
-              Business domains can be connected later when budget allows.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <div class="wrap footGrid">
-          <div>
-            <div><b>Shaun Nkuna Digital Solutions</b> — Websites • SEO • Social Media</div>
-            <div class="small">© <span id="y"></span> Shaun Nkuna • Middelburg • Built for live portfolio proof</div>
-          </div>
-          <div class="small">Tip: Upload <b>hero.jpg</b> and <b>portrait.jpg</b> into the same repo as this file.</div>
-        </div>
-      </footer>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <a class="btn" href="https://wa.me/27765238594" target="_blank">Book a Call</a>
+        <a class="btn secondary" href="#work">View Live Work</a>
+      </div>
     </div>
-  </main>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+    <div class="card">
+      <h3>Quick Contact</h3>
+      <p>WhatsApp: 076 523 8594</p>
+      <p>Call: 068 208 5749</p>
+      <p>Email: shaunrepublicclothingsa@gmail.com</p>
+      <p>Location: Middelburg</p>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2 style="margin:18px 0 8px">Live Websites</h2>
+    <p style="margin:0;color:rgba(234,240,255,.72)">Real sites you can open and review.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>ShaunRepublic Clothing</h3>
+        <p>Brand site + product showcase + contact CTAs.</p>
+        <a class="btn" href="https://nkunass328-cloud.github.io/Shaunrepublic-Clothing/" target="_blank">Open Website</a>
+      </div>
+
+      <div class="card">
+        <h3>The Grace Chicken Dust</h3>
+        <p>Menu + pickup/delivery + WhatsApp ordering.</p>
+        <a class="btn" href="https://nkunass328-cloud.github.io/The-grace-chicken-dust/" target="_blank">Open Website</a>
+      </div>
+
+      <div class="card">
+        <h3>Faith Of Christians In Ministries</h3>
+        <p>Service times + ministries + contact links.</p>
+        <a class="btn" href="https://nkunass328-cloud.github.io/Faith-Of-Christians-In-Ministries-/" target="_blank">Open Website</a>
+      </div>
+
+      <div class="card">
+        <h3>Motivep (Pty) Ltd</h3>
+        <p>Company profile website + references section (no values).</p>
+        <a class="btn" href="https://nkunass328-cloud.github.io/Motive-p--Pty--Ltd/" target="_blank">Open Website</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Shaun Nkuna • Digital Solutions</footer>
+</div>
+
 </body>
 </html>
